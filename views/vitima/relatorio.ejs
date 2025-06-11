@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br" data-bs-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de Vítimas</title>
-    <%- include('../partials/cabecalho') %>
-    <%- include('../partials/menu') %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório de Vítimas</title>
+  <%- include('../partials/cabecalho') %>
+  <%- include('../partials/menu') %>
 </head>
 <body>
-  <div class='container'> 
+  <div class='container'>
     <br>
-     <H3>Relatório de Vítimas</H3>
-    
+    <h3>Relatório de Vítimas</h3>
+
     <% if(status == '1'){%>
-        <div class="alert alert-success alert-dismissible">
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            Cadastrado Com <b>Sucesso!</b>
-        </div>
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        Cadastrado com <b>Sucesso!</b>
+      </div>
     <%}%>
-    
-    <table class="table table-striped table-dark table-hover">
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>CPF</th>
-          <th>Data de Nascimento</th>
-          <th>Filiação</th>
-          <th>Endereço</th>
-          <th>Telefone</th>
-          <th>Grau de Escolaridade</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% vitimas.forEach(vitima => { %>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-dark table-hover align-middle">
+        <thead>
           <tr>
-            <td><%= vitima.nome %></td>
-            <td><%= vitima.cpf %></td>
-            <td><%= vitima.dataNascimento.toISOString().substring(0,10) %></td>
-            <td><%= vitima.filiacao %></td>
-            <td><%= vitima.endereco %></td>
-            <td><%= vitima.telefone %></td>
-            <td><%= vitima.grauEscolaridade %></td>
-            <td>
-              <div>
-                 <a href="/vitimas/<%= vitima._id %>" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="detalhes da vitima">
-                  <i class="bi bi-info-circle"></i> 
-                </a>
-                <a href="/vitimas/editar/<%= vitima._id %>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title="atualizar vitima">
-                  <i class="bi bi-pencil"></i>
-                </a>
-                <form action="/vitimas/<%= vitima._id %>/remover" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta vítima?');">
-                  <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title="excluir vitima">
-                    <i class="bi bi-trash"></i> 
-                  </button>
-                </form>
-              </div>  
-            </td>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Data de Nascimento</th>
+            <th class="d-none d-sm-table-cell">Filiação</th> <!--oculta quando em mobile--> 
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th class="d-none d-sm-table-cell">Grau de Escolaridade</th><!--oculta quando em mobile-->
+            <th>Ações</th>
           </tr>
-        <% }) %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% vitimas.forEach(vitima => { %>
+            <tr>
+              <td><%= vitima.nome %></td>
+              <td><%= vitima.cpf %></td>
+              <td><%= vitima.dataNascimento.toISOString().substring(0,10) %></td>
+              <td class="d-none d-sm-table-cell"><%= vitima.filiacao %></td>
+              <td><%= vitima.endereco %></td>
+              <td><%= vitima.telefone %></td>
+              <td class="d-none d-sm-table-cell"><%= vitima.grauEscolaridade %></td>
+              <td>
+                <div class="d-flex flex-wrap gap-1">
+                  <a href="/vitimas/<%= vitima._id %>" class="btn btn-primary btn-sm" data-bs-toggle="tooltip" title="Detalhes da vítima">
+                    <i class="bi bi-info-circle"></i>
+                  </a>
+                  <a href="/vitimas/editar/<%= vitima._id %>" class="btn btn-warning btn-sm" data-bs-toggle="tooltip" title="Atualizar vítima">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <form action="/vitimas/<%= vitima._id %>/remover" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta vítima?');">
+                    <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="tooltip" title="Excluir vítima">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
   </div>
-    <%- include('../partials/rodape') %>
+
+  <%- include('../partials/rodape') %>
 </body>
 </html>
