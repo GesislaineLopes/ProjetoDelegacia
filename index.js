@@ -30,7 +30,7 @@ app.use(session({
   resave: false
 }));
 
-// Middleware para disponibilizar o usuário logado nas views
+// Middleware para mostrar qual o usuário logado 
 app.use(async (req, res, next) => {
   if (req.session && req.session.usuarioId) {
     try {
@@ -50,6 +50,7 @@ app.use(async (req, res, next) => {
   next();
 });
 
+//autenticação de usuario
 app.get("/", async function (req, res) {
   if (req.session && req.session.usuarioId) {
     res.render("index");
@@ -62,6 +63,7 @@ app.use("/",vitimaRoutes);
 app.use("/",ocorrenciaRoutes);
 app.use("/usuarios",usuarioRoutes);
 
+//inicia o servidor web
 app.listen(process.env.PORT, function () {
   console.log('Rodando....');
 });
