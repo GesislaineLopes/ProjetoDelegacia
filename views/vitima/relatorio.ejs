@@ -25,11 +25,11 @@
           <tr>
             <th>Nome</th>
             <th>CPF</th>
-            <th class="d-none d-sm-table-cell">Data de Nascimento</th><!--oculta quando em mobile-->
-            <th class="d-none d-sm-table-cell">Filiação</th> <!--oculta quando em mobile--> 
-            <th>Endereço</th> 
-            <th class="d-none d-sm-table-cell">Telefone</th><!--oculta quando em mobile-->
-            <th class="d-none d-sm-table-cell">Grau de Escolaridade</th><!--oculta quando em mobile-->
+            <th class="d-none d-sm-table-cell">Data de Nascimento</th>
+            <th class="d-none d-sm-table-cell">Filiação</th>
+            <th>Endereço</th>
+            <th class="d-none d-sm-table-cell">Telefone</th>
+            <th class="d-none d-sm-table-cell">Grau de Escolaridade</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -38,10 +38,10 @@
             <tr>
               <td><%= vitima.nome %></td>
               <td><%= vitima.cpf %></td>
-              <td><%= vitima.dataNascimento.toISOString().substring(0,10) %></td>
+              <td class="d-none d-sm-table-cell"><%= vitima.dataNascimento.toISOString().substring(0,10) %></td>
               <td class="d-none d-sm-table-cell"><%= vitima.filiacao %></td>
               <td><%= vitima.endereco %></td>
-              <td><%= vitima.telefone %></td>
+              <td class="d-none d-sm-table-cell"><%= vitima.telefone %></td>
               <td class="d-none d-sm-table-cell"><%= vitima.grauEscolaridade %></td>
               <td>
                 <div class="d-flex flex-wrap gap-1">
