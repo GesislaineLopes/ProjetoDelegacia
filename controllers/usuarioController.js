@@ -92,11 +92,11 @@ class UsuarioController {
                 res.redirect('/');
             } else {
                 console.log('Senha correta');
-                return res.status(401).render('usuario/login', { errorMessage: ' senha inválida' });
+                return res.status(401).render('usuario/login', { errorMessage: ' senha ou email inválidos' });
             }
         } else {
             console.log('E-mail incorreto');
-            return res.status(401).render('usuario/login', { errorMessage: 'Email inválido' });
+            return res.status(401).render('usuario/login', { errorMessage: 'senha ou email inválidos' });
         }
     }
     static logout(req,res){
